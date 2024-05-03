@@ -1,0 +1,15 @@
+# we need full access
+sudo: required
+
+# we are going to use docker for build, so lets install it
+services:
+  - docker
+
+# the docker build command,
+# notice that we have to provide tag for the image, 
+# we are going to use that later on
+before_install: 
+  - docker build -t hghs/frontend -f Dockerfile.dev .
+
+script: 
+  - docker run -e CI=true -t hghs/frontend npm run build -- -- coverage 
