@@ -1,0 +1,17 @@
+# specify version
+version: '3'
+# app info
+services:
+# app name
+  react-travis:
+  # build the dockerfile, context is the ../ or ./
+  # dockerfile is the docker file that we want to be built
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+# ports to map
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules
+      - .:/app
