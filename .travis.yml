@@ -12,4 +12,20 @@ before_install:
   - docker build -t hghs/travisCI -f Dockerfile.dev .
 
 script: 
-  - docker run -e CI=true -t hghs/travisCI npm run build -- -- coverage 
+  - docker run -e CI=true -t hghs/travisCI npm run build -- -- coverage
+
+deploy:
+  provider: elasticbeanstalk
+  # extract region from the address given by AWS
+  region: ""
+  app: "react-travis"
+  env: "React-travis-env"
+  # search for 'S3' in AWS panel
+  # there is a list of buckets,
+  # find the bucketname: elasticbeanstalk-'region'
+  bucket_name: ""
+  bucket_path: "react-travis"
+  on: 
+    branch: main
+  access_key_id: ""
+  secret_access_key: ""
