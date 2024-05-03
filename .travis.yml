@@ -9,7 +9,7 @@ services:
 # notice that we have to provide tag for the image, 
 # we are going to use that later on
 before_install: 
-  - docker build -t hghs/frontend -f Dockerfile.dev .
+  - docker build -t hghs/travisCI -f Dockerfile.dev .
 
 script: 
-  - docker run -e CI=true -t hghs/frontend npm run build -- -- coverage 
+  - docker run -e CI=true -t hghs/travisCI npm run build -- -- coverage 
